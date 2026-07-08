@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock en la Ciudad — Iniciar sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="wall-texture" aria-hidden="true"></div>
+  <div class="light-beam beam-1" aria-hidden="true"></div>
+  <div class="light-beam beam-2" aria-hidden="true"></div>
+
+  <main class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+      <p class="login-card__eyebrow">ACCESO RESTRINGIDO</p>
+      <h1 class="login-card__title" id="login-title">Ingresá para votar</h1>
+      <p class="login-card__copy">
+        Iniciá sesión con tu cuenta de Google para votar por tu banda favorita.
+        Un voto por banda. Tu voz define el line-up del festival.
+      </p>
+
+      <button class="login-card__google-btn" id="loginBtn" type="button">
+        <span class="login-card__google-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="#4285F4" d="M21.6 12.23c0-.79-.07-1.54-.2-2.27H12v4.3h5.38a4.6 4.6 0 0 1-2 3.02v2.5h3.24c1.9-1.75 2.98-4.33 2.98-7.55Z"/>
+            <path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.62-2.44l-3.24-2.5c-.9.6-2.05.95-3.38.95-2.6 0-4.8-1.76-5.6-4.12H3.07v2.58A10 10 0 0 0 12 22Z"/>
+            <path fill="#FBBC05" d="M6.4 12.89a6.02 6.02 0 0 1 0-3.78V6.53H3.07a10 10 0 0 0 0 12.94l3.33-2.58Z"/>
+            <path fill="#EA4335" d="M12 6.08c1.47 0 2.79.5 3.83 1.49l2.87-2.87A9.96 9.96 0 0 0 12 2a10 10 0 0 0-8.93 5.53l3.33 2.58C7.2 7.84 9.4 6.08 12 6.08Z"/>
+          </svg>
+        </span>
+        Continuar con Google
+      </button>
+
+      <p class="login-card__note">Tus datos se usan solo para autenticación. Nunca publicamos nada sin tu permiso.</p>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB4zSArMAQZT6oj8NlTQlfvnHZPGT0wAdo",
+      authDomain: "rockenlaciudad-fa18e.firebaseapp.com",
+      projectId: "rockenlaciudad-fa18e",
+      storageBucket: "rockenlaciudad-fa18e.firebasestorage.app",
+      messagingSenderId: "242192220878",
+      appId: "1:242192220878:web:70fbfcad9c0c0c7b18069f"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const btn = document.getElementById('loginBtn');
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        window.location.href = 'index.html';
+      }
+    });
+
+    btn.addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+        .then(() => {
+          window.location.href = 'index.html';
+        })
+        .catch((error) => {
+          console.error('Error en login con Google:', error);
+          alert('Error al iniciar sesión con Google. Revisá la consola.');
+        });
+    });
+  </script>
+</body>
+</html>
