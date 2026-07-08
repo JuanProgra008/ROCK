@@ -5,7 +5,10 @@ import {
   doc,
   increment,
   runTransaction,
-  onSnapshot
+  onSnapshot,
+  setDoc,
+  getDocs,
+  collection
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -25,190 +28,38 @@ const ENCUESTA_DOC = doc(db, 'votos', 'encuesta');
 const VOTANTES_COL = 'votantes';
 
 const BANDAS = [
-  {
-    id: 'soda-stereo',
-    nombre: 'Soda Stereo',
-    genero: 'Rock / New Wave',
-    anio: 1982,
-    descripcion: 'El trío que redefinió el rock en español con capas de sintetizadores y guitarras filosas.',
-    color: '#4CC9F0',
-    colorGlow: 'rgba(76,201,240,.5)'
-  },
-  {
-    id: 'redonditos',
-    nombre: 'Los Redonditos de Ricota',
-    genero: 'Rock nacional',
-    anio: 1976,
-    descripcion: 'Poesía urbana, riffs hipnóticos y una legión de fans que se saben cada verso de memoria.',
-    color: '#FFD166',
-    colorGlow: 'rgba(255,209,102,.5)'
-  },
-  {
-    id: 'la-renga',
-    nombre: 'La Renga',
-    genero: 'Hard Rock',
-    anio: 1988,
-    descripcion: 'Actitud de barrio y descargas de energía cruda que hacen temblar cualquier estadio.',
-    color: '#FF4D6D',
-    colorGlow: 'rgba(255,77,109,.5)'
-  },
-  {
-    id: 'divididos',
-    nombre: 'Divididos',
-    genero: 'Rock Alternativo',
-    anio: 1988,
-    descripcion: 'Groove pesado, guitarras distorsionadas y una mezcla única de folklore y rock pesado.',
-    color: '#F72585',
-    colorGlow: 'rgba(247,37,133,.5)'
-  },
-  {
-    id: 'airbag',
-    nombre: 'Airbag',
-    genero: 'Rock Alternativo',
-    anio: 1997,
-    descripcion: 'Melodías directas y estribillos gigantes que llenan cualquier campo de himnos coreados.',
-    color: '#9D4EDD',
-    colorGlow: 'rgba(157,78,221,.5)'
-  },
-  {
-    id: 'los-piojos',
-    nombre: 'Los Piojos',
-    genero: 'Rock / R&B',
-    anio: 1988,
-    descripcion: 'Rock callejero con aires de blues y murga que atrapó a toda una generación.',
-    color: '#00B4D8',
-    colorGlow: 'rgba(0,180,216,.5)'
-  },
-  {
-    id: 'pastillas-del-abuelo',
-    nombre: 'Las Pastillas del Abuelo',
-    genero: 'Rock / Reggae',
-    anio: 2002,
-    descripcion: 'Letras profundas y un sonido que fusiona rock con reggae, ska y folklore.',
-    color: '#7209B7',
-    colorGlow: 'rgba(114,9,183,.5)'
-  },
-  {
-    id: 'ciro-y-los-persas',
-    nombre: 'Ciro y los Persas',
-    genero: 'Rock / Fusión',
-    anio: 2009,
-    descripcion: 'La voz de Los Piojos continúa su legado con un power trío arrollador.',
-    color: '#E63946',
-    colorGlow: 'rgba(230,57,70,.5)'
-  },
-  {
-    id: 'bersuit',
-    nombre: 'Bersuit Vergarabat',
-    genero: 'Rock / Murga',
-    anio: 1987,
-    descripcion: 'Rock experimental con coros de murga, letras ácidas y un show eléctrico.',
-    color: '#2A9D8F',
-    colorGlow: 'rgba(42,157,143,.5)'
-  },
-  {
-    id: 'carajo',
-    nombre: 'Carajo',
-    genero: 'Hard Rock / Metal',
-    anio: 1996,
-    descripcion: 'Potencia pura, riffs demoledores y una energía que no da tregua en vivo.',
-    color: '#E76F51',
-    colorGlow: 'rgba(231,111,81,.5)'
-  },
-  {
-    id: 'babasonicos',
-    nombre: 'Babasónicos',
-    genero: 'Rock Alternativo',
-    anio: 1991,
-    descripcion: 'Vanguardia y actitud, la banda que suena siempre un paso adelante.',
-    color: '#264653',
-    colorGlow: 'rgba(38,70,83,.5)'
-  },
-  {
-    id: 'rata-blanca',
-    nombre: 'Rata Blanca',
-    genero: 'Heavy Metal',
-    anio: 1985,
-    descripcion: 'Guitarras neoclásicas y power metal con himnos que cruzaron fronteras.',
-    color: '#F4A261',
-    colorGlow: 'rgba(244,162,97,.5)'
-  },
-  {
-    id: 'almafuerte',
-    nombre: 'Almafuerte',
-    genero: 'Heavy Metal',
-    anio: 1995,
-    descripcion: 'Metal con impronta nacional, letras de lucha y un sonido inconfundible.',
-    color: '#E07A5F',
-    colorGlow: 'rgba(224,122,95,.5)'
-  },
-  {
-    id: 'calamaro',
-    nombre: 'Andrés Calamaro',
-    genero: 'Rock / Pop',
-    anio: 1981,
-    descripcion: 'Cantor y compositor inmenso, dueño de un cancionero que es banda sonora de vidas.',
-    color: '#3D405B',
-    colorGlow: 'rgba(61,64,91,.5)'
-  },
-  {
-    id: 'fito-paez',
-    nombre: 'Fito Páez',
-    genero: 'Rock / Pop',
-    anio: 1981,
-    descripcion: 'Pianista y poeta, sus canciones son joyas que emocionan generación tras generación.',
-    color: '#81B29A',
-    colorGlow: 'rgba(129,178,154,.5)'
-  },
-  {
-    id: 'attaque-77',
-    nombre: 'Attaque 77',
-    genero: 'Punk Rock',
-    anio: 1987,
-    descripcion: 'Punk melódico con actitud callejera y estribillos que invitan al pogo.',
-    color: '#D62828',
-    colorGlow: 'rgba(214,40,40,.5)'
-  },
-  {
-    id: 'fabulosos-cadillacs',
-    nombre: 'Los Fabulosos Cadillacs',
-    genero: 'Ska / Rock',
-    anio: 1985,
-    descripcion: 'La fusión definitiva de ska, punk, reggae y rock con una puesta en escena apabullante.',
-    color: '#6A4C93',
-    colorGlow: 'rgba(106,76,147,.5)'
-  },
-  {
-    id: 'vela-puerca',
-    nombre: 'La Vela Puerca',
-    genero: 'Rock / Ska',
-    anio: 1995,
-    descripcion: 'Energía uruguaya pura: ska acelerado, letras vitales y un directo demoledor.',
-    color: '#1B4965',
-    colorGlow: 'rgba(27,73,101,.5)'
-  }
+  { id: 'off-meta', nombre: 'Off meta', color: '#4CC9F0', colorGlow: 'rgba(76,201,240,.5)' },
+  { id: 'odixo', nombre: 'Odixo', color: '#FFD166', colorGlow: 'rgba(255,209,102,.5)' },
+  { id: 'perros-de-berlin', nombre: 'Perros de Berlín', color: '#FF4D6D', colorGlow: 'rgba(255,77,109,.5)' },
+  { id: 'the-monky-scrazy', nombre: 'The monky scrazy', color: '#F72585', colorGlow: 'rgba(247,37,133,.5)' },
+  { id: 'vertiente', nombre: 'Vertiente', color: '#9D4EDD', colorGlow: 'rgba(157,78,221,.5)' },
+  { id: 'los-chambers', nombre: 'Los chambers', color: '#00B4D8', colorGlow: 'rgba(0,180,216,.5)' },
+  { id: 'la-oruga', nombre: 'La oruga', color: '#7209B7', colorGlow: 'rgba(114,9,183,.5)' },
+  { id: 'nocturno', nombre: 'Nocturno', color: '#E63946', colorGlow: 'rgba(230,57,70,.5)' },
+  { id: 'galaxia-cero', nombre: 'Galaxia cero', color: '#2A9D8F', colorGlow: 'rgba(42,157,143,.5)' },
+  { id: 'the-new-blues-flame', nombre: 'The New Blues Flame', color: '#E76F51', colorGlow: 'rgba(231,111,81,.5)' },
+  { id: 'gas', nombre: 'Gas', color: '#264653', colorGlow: 'rgba(38,70,83,.5)' },
+  { id: 'humano', nombre: 'Humano', color: '#F4A261', colorGlow: 'rgba(244,162,97,.5)' },
+  { id: 'la-piluso', nombre: 'La Piluso', color: '#E07A5F', colorGlow: 'rgba(224,122,95,.5)' },
+  { id: 'melcet', nombre: 'Melcet', color: '#3D405B', colorGlow: 'rgba(61,64,91,.5)' },
+  { id: 'charlie-y-su-banda', nombre: 'Charlie y su banda', color: '#81B29A', colorGlow: 'rgba(129,178,154,.5)' },
+  { id: 'dm-y-amigos', nombre: 'DM y Amigos', color: '#D62828', colorGlow: 'rgba(214,40,40,.5)' },
+  { id: 'franco-mai', nombre: 'Franco Mai', color: '#6A4C93', colorGlow: 'rgba(106,76,147,.5)' },
+  { id: 'not-provide', nombre: 'Not Provide', color: '#1B4965', colorGlow: 'rgba(27,73,101,.5)' }
 ];
 
 let votos = {};
 let usuarioActual = null;
 let unsubscribeSnapshot = null;
 
-const VOTED_KEY = 'rockCiudad_yaVoto_v1';
+const VOTED_KEY = 'rockCiudad_yaVoto_v2';
 
-function yaVotoLocal(bandaId) {
-  const registro = localStorage.getItem(VOTED_KEY);
-  if (!registro) return false;
-  try { return JSON.parse(registro).includes(bandaId); } catch (e) { return false; }
+function yaVotoLocal() {
+  return !!localStorage.getItem(VOTED_KEY);
 }
 
 function marcarVotadoLocal(bandaId) {
-  let registro = [];
-  const guardado = localStorage.getItem(VOTED_KEY);
-  if (guardado) { try { registro = JSON.parse(guardado); } catch (e) {} }
-  if (!registro.includes(bandaId)) {
-    registro.push(bandaId);
-    localStorage.setItem(VOTED_KEY, JSON.stringify(registro));
-  }
+  localStorage.setItem(VOTED_KEY, bandaId);
 }
 
 const bandsGrid = document.getElementById('bandsGrid');
@@ -223,10 +74,7 @@ function crearTarjetaBanda(banda, indice) {
   const votosBanda = votos[banda.id] ?? 0;
 
   card.innerHTML = `
-    <span class="band-card__genre">${banda.genero}</span>
     <h3 class="band-card__name">${banda.nombre}</h3>
-    <p class="band-card__year">DESDE ${banda.anio}</p>
-    <p class="band-card__desc">${banda.descripcion}</p>
     <div class="band-card__footer">
       <button class="vote-btn" data-banda="${banda.id}" type="button">Votar</button>
       <div class="vote-count">
@@ -240,15 +88,16 @@ function crearTarjetaBanda(banda, indice) {
 
 function renderizarTarjetas() {
   bandsGrid.innerHTML = '';
+  const yaVoto = yaVotoLocal();
   BANDAS.forEach((banda, i) => {
     const card = crearTarjetaBanda(banda, i);
     bandsGrid.appendChild(card);
-  });
-
-  BANDAS.forEach(banda => {
-    if (yaVotoLocal(banda.id)) {
-      const btn = document.querySelector(`.vote-btn[data-banda="${banda.id}"]`);
-      if (btn) marcarBotonComoVotado(btn);
+    if (yaVoto) {
+       const btn = card.querySelector('.vote-btn');
+       if (btn) {
+         btn.disabled = true;
+         btn.textContent = 'Ya votaste';
+       }
     }
   });
 }
@@ -314,7 +163,7 @@ function mostrarToast(nombreBanda) {
 }
 
 async function votar(bandaId, boton, evento) {
-  if (yaVotoLocal(bandaId) || !usuarioActual) return;
+  if (yaVotoLocal() || !usuarioActual) return;
 
   crearRipple(evento, boton);
 
@@ -323,30 +172,31 @@ async function votar(bandaId, boton, evento) {
       const refVotante = doc(db, VOTANTES_COL, usuarioActual.uid);
       const votanteSnap = await transaction.get(refVotante);
 
-      let votedFor = {};
-      if (votanteSnap.exists()) {
-        votedFor = votanteSnap.data().votedFor || {};
-      }
-
-      if (votedFor[bandaId]) {
+      if (votanteSnap.exists() && votanteSnap.data().votedFor && Object.keys(votanteSnap.data().votedFor).length > 0) {
         throw new Error('ya-votaste');
       }
 
-      votedFor[bandaId] = true;
-      transaction.set(refVotante, { votedFor }, { merge: true });
+      transaction.set(refVotante, { votedFor: { [bandaId]: true } }, { merge: true });
       transaction.set(ENCUESTA_DOC, { [bandaId]: increment(1) }, { merge: true });
     });
 
     marcarVotadoLocal(bandaId);
-    marcarBotonComoVotado(boton);
+    
+    document.querySelectorAll('.vote-btn').forEach(b => {
+        b.disabled = true;
+        b.textContent = 'Ya votaste';
+    });
 
     const banda = BANDAS.find(b => b.id === bandaId);
     mostrarToast(banda.nombre);
 
   } catch (error) {
     if (error.message === 'ya-votaste') {
-      marcarBotonComoVotado(boton);
-      marcarVotadoLocal(bandaId);
+        alert('Ya has votado previamente.');
+        document.querySelectorAll('.vote-btn').forEach(b => {
+            b.disabled = true;
+            b.textContent = 'Ya votaste';
+        });
     } else {
       console.error('Error al votar:', error);
     }
@@ -421,6 +271,49 @@ function actualizarContadores() {
   });
 }
 
+async function resetVotes() {
+  if (confirm('¿Estás seguro de que quieres resetear todos los votos a cero?')) {
+    await setDoc(ENCUESTA_DOC, {});
+    alert('Votos reseteados');
+  }
+}
+
+async function downloadVotersCSV() {
+  try {
+    const votantesSnapshot = await getDocs(collection(db, VOTANTES_COL));
+    let csvContent = "data:text/csv;charset=utf-8,Votante,Bandas Votadas\n";
+    
+    votantesSnapshot.forEach((doc) => {
+      const data = doc.data();
+      const voterId = doc.id;
+      const votedFor = data.votedFor ? Object.keys(data.votedFor).join('; ') : '';
+      csvContent += `${voterId},"${votedFor}"\n`;
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "votantes.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error('Error al descargar:', error);
+    alert('Error al descargar votantes');
+  }
+}
+
+function renderizarAdminPanel() {
+  const panel = document.getElementById('adminPanel');
+  if (!panel) return;
+  panel.innerHTML = `
+    <button id="resetVotesBtn" style="margin: 5px; padding: 10px; background: #E63946; color: white; border: none; cursor: pointer;">Resetear Votos</button>
+    <button id="downloadVotersBtn" style="margin: 5px; padding: 10px; background: #2A9D8F; color: white; border: none; cursor: pointer;">Descargar Excel (CSV)</button>
+  `;
+  document.getElementById('resetVotesBtn').addEventListener('click', resetVotes);
+  document.getElementById('downloadVotersBtn').addEventListener('click', downloadVotersCSV);
+}
+
 function escucharVotos() {
   if (unsubscribeSnapshot) {
     unsubscribeSnapshot();
@@ -448,6 +341,9 @@ async function iniciar() {
       document.documentElement.style.visibility = 'visible';
       renderizarTarjetas();
       escucharVotos();
+      if (user.email === 'valentino.machado108@gmail.com') {
+        renderizarAdminPanel();
+      }
     } else {
       window.location.replace('login.html');
     }
