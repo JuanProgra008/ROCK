@@ -273,13 +273,23 @@ function actualizarContadores() {
 
 async function resetVotes() {
   if (confirm('¿Estás seguro de que quieres resetear todos los votos a cero?')) {
-    await setDoc(ENCUESTA_DOC, {});
-    alert('Votos reseteados');
+    try {
+      console.log("Intentando resetear...");
+      const resetData = {};
+      BANDAS.forEach(b => resetData[b.id] = 0);
+      await setDoc(ENCUESTA_DOC, resetData);
+      alert('Votos reseteados');
+      console.log("Votos reseteados con éxito.");
+    } catch (e) {
+      console.error("Error reseteando:", e);
+      alert("Error al resetear: " + e.message);
+    }
   }
 }
 
 async function downloadVotersCSV() {
   try {
+    console.log("Intentando descargar...");
     const votantesSnapshot = await getDocs(collection(db, VOTANTES_COL));
     let csvContent = "data:text/csv;charset=utf-8,Votante,Bandas Votadas\n";
     
@@ -297,9 +307,10 @@ async function downloadVotersCSV() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    console.log("Descarga iniciada.");
   } catch (error) {
     console.error('Error al descargar:', error);
-    alert('Error al descargar votantes');
+    alert('Error al descargar votantes: ' + error.message);
   }
 }
 
@@ -341,7 +352,7 @@ async function iniciar() {
       document.documentElement.style.visibility = 'visible';
       renderizarTarjetas();
       escucharVotos();
-      if (user.email === 'valentino.machado108@gmail.com') {
+      if (user.email === 'valeprivado03@gmail.com') {
         renderizarAdminPanel();
       }
     } else {
