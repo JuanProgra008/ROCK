@@ -31,7 +31,7 @@ const BANDAS = [
   { id: 'off-meta', nombre: 'Off meta', color: '#4CC9F0', colorGlow: 'rgba(76,201,240,.5)' },
   { id: 'odixo', nombre: 'Odixo', color: '#FFD166', colorGlow: 'rgba(255,209,102,.5)' },
   { id: 'perros-de-berlin', nombre: 'Perros de Berlín', color: '#FF4D6D', colorGlow: 'rgba(255,77,109,.5)' },
-  { id: 'the-monky-scrazy', nombre: 'The monky scrazy', color: '#F72585', colorGlow: 'rgba(247,37,133,.5)' },
+  { id: 'the-monkey-scrazy', nombre: 'The monkey scrazy', color: '#F72585', colorGlow: 'rgba(247,37,133,.5)' },
   { id: 'vertiente', nombre: 'Vertiente', color: '#9D4EDD', colorGlow: 'rgba(157,78,221,.5)' },
   { id: 'los-chambers', nombre: 'Los chambers', color: '#00B4D8', colorGlow: 'rgba(0,180,216,.5)' },
   { id: 'la-oruga', nombre: 'La oruga', color: '#7209B7', colorGlow: 'rgba(114,9,183,.5)' },
@@ -42,7 +42,7 @@ const BANDAS = [
   { id: 'humano', nombre: 'Humano', color: '#F4A261', colorGlow: 'rgba(244,162,97,.5)' },
   { id: 'la-piluso', nombre: 'La Piluso', color: '#E07A5F', colorGlow: 'rgba(224,122,95,.5)' },
   { id: 'melcet', nombre: 'Melcet', color: '#3D405B', colorGlow: 'rgba(61,64,91,.5)' },
-  { id: 'charlie-y-su-banda', nombre: 'Charlie y su banda', color: '#81B29A', colorGlow: 'rgba(129,178,154,.5)' },
+  { id: 'la-banda-de-charly', nombre: 'La banda de Charly', color: '#81B29A', colorGlow: 'rgba(129,178,154,.5)' },
   { id: 'dm-y-amigos', nombre: 'DM y Amigos', color: '#D62828', colorGlow: 'rgba(214,40,40,.5)' },
   { id: 'franco-mai', nombre: 'Franco Mai', color: '#6A4C93', colorGlow: 'rgba(106,76,147,.5)' },
   { id: 'not-provide', nombre: 'Not Provide', color: '#1B4965', colorGlow: 'rgba(27,73,101,.5)' }
