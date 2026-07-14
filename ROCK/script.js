@@ -38,7 +38,6 @@ const BANDAS = [
   { id: 'nocturno', nombre: 'Nocturno', color: '#E63946', colorGlow: 'rgba(230,57,70,.5)' },
   { id: 'galaxia-cero', nombre: 'Galaxia cero', color: '#2A9D8F', colorGlow: 'rgba(42,157,143,.5)' },
   { id: 'the-new-blues-flame', nombre: 'The New Blues Flame', color: '#E76F51', colorGlow: 'rgba(231,111,81,.5)' },
-  { id: 'gas', nombre: 'Gas', color: '#264653', colorGlow: 'rgba(38,70,83,.5)' },
   { id: 'humano', nombre: 'Humano', color: '#F4A261', colorGlow: 'rgba(244,162,97,.5)' },
   { id: 'la-piluso', nombre: 'La Piluso', color: '#E07A5F', colorGlow: 'rgba(224,122,95,.5)' },
   { id: 'melcet', nombre: 'Melcet', color: '#3D405B', colorGlow: 'rgba(61,64,91,.5)' },
