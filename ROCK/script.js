@@ -34,7 +34,6 @@ const BANDAS = [
   { id: 'the-monkey-scrazy', nombre: 'The monkey scrazy', color: '#F72585', colorGlow: 'rgba(247,37,133,.5)' },
   { id: 'vertiente', nombre: 'Vertiente', color: '#9D4EDD', colorGlow: 'rgba(157,78,221,.5)' },
   { id: 'los-chambers', nombre: 'Los chambers', color: '#00B4D8', colorGlow: 'rgba(0,180,216,.5)' },
-  { id: 'la-oruga', nombre: 'La oruga', color: '#7209B7', colorGlow: 'rgba(114,9,183,.5)' },
   { id: 'nocturno', nombre: 'Nocturno', color: '#E63946', colorGlow: 'rgba(230,57,70,.5)' },
   { id: 'galaxia-cero', nombre: 'Galaxia cero', color: '#2A9D8F', colorGlow: 'rgba(42,157,143,.5)' },
   { id: 'the-new-blues-flame', nombre: 'The New Blues Flame', color: '#E76F51', colorGlow: 'rgba(231,111,81,.5)' },
@@ -44,7 +43,7 @@ const BANDAS = [
   { id: 'la-banda-de-charly', nombre: 'La banda de Charly', color: '#81B29A', colorGlow: 'rgba(129,178,154,.5)' },
   { id: 'dm-y-amigos', nombre: 'DM y Amigos', color: '#D62828', colorGlow: 'rgba(214,40,40,.5)' },
   { id: 'franco-mai', nombre: 'Franco Mai', color: '#6A4C93', colorGlow: 'rgba(106,76,147,.5)' },
-  { id: 'not-provide', nombre: 'Not Provide', color: '#1B4965', colorGlow: 'rgba(27,73,101,.5)' }
+  { id: 'not-provided', nombre: 'Not Provided', color: '#1B4965', colorGlow: 'rgba(27,73,101,.5)' }
 ];
 
 let votos = {};
