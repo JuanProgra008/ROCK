@@ -156,7 +156,10 @@ function crearPlayerUI() {
       <div id="player-center">
         <div id="player-controls">
           <button id="btn-prev" class="pc-btn" title="Anterior">
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path d="M18 6 10 12 18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M8 6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
           </button>
           <button id="btn-play" class="pc-btn pc-btn--play" title="Play/Pause">
             <svg viewBox="0 0 24 24" width="22" height="22" id="play-icon">
@@ -167,7 +170,10 @@ function crearPlayerUI() {
             </svg>
           </button>
           <button id="btn-next" class="pc-btn" title="Siguiente">
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M18 6h2v12h-2zm-8.5 6l8.5 6V6z" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path d="M6 6 14 12 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M16 6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
           </button>
         </div>
         <div id="player-progress-wrap">
