@@ -31,7 +31,7 @@ const BANDAS = [
   { id: 'off-meta', nombre: 'Off meta', color: '#4CC9F0', colorGlow: 'rgba(76,201,240,.5)' },
   { id: 'odixo', nombre: 'Odixo', color: '#FFD166', colorGlow: 'rgba(255,209,102,.5)' },
   { id: 'perros-de-berlin', nombre: 'Perros de Berlín', color: '#FF4D6D', colorGlow: 'rgba(255,77,109,.5)' },
-  { id: 'the-monkey-scrazy', nombre: 'The monkey scrazy', color: '#F72585', colorGlow: 'rgba(247,37,133,.5)' },
+  { id: 'the-monkeys-crazy', nombre: 'The monkeys crazy', color: '#F72585', colorGlow: 'rgba(247,37,133,.5)' },
   { id: 'vertiente', nombre: 'Vertiente', color: '#9D4EDD', colorGlow: 'rgba(157,78,221,.5)' },
   { id: 'los-chambers', nombre: 'Los chambers', color: '#00B4D8', colorGlow: 'rgba(0,180,216,.5)' },
   { id: 'nocturno', nombre: 'Nocturno', color: '#E63946', colorGlow: 'rgba(230,57,70,.5)' },
